@@ -1,0 +1,19 @@
+CC = gcc
+CFLAGS = -Wall -Iinclude `sdl2-config --cflags`
+LDFLAGS = `sdl2-config --libs`
+
+SRC = \
+    engine/core/init.c \
+    game/main.c
+
+OBJ = $(SRC:.c=.o)
+BIN = build/game
+
+all: $(BIN)
+
+$(BIN): $(SRC)
+	@mkdir -p build
+	$(CC) $(CFLAGS) -o $(BIN) $(SRC) $(LDFLAGS)
+
+clean:
+	rm -rf build *.o
